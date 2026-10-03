@@ -8,7 +8,7 @@ interface FinalCTAProps {
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenFreePass, onExploreSchedule }) => {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden bg-black text-center">
+    <section className="final-cta-section relative py-28 sm:py-36 overflow-hidden bg-black text-center">
       {/* Background Cinematic Photo with Heavy Dramatic Overlays */}
       <div className="absolute inset-0 z-0">
         <img

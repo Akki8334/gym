@@ -11,7 +11,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
   const videoId = "MO4sdsh1T4I";
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-12 overflow-hidden bg-[#08080a]">
+    <section className="hero-section relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-12 overflow-hidden bg-[#08080a]">
       {/* Background Cinematic YouTube Looping Video (Completely Ambient, Zero Controls) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         {/* Poster Fallback Image while iframe initializes */}
@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
         <div className="absolute inset-0 bg-scanline pointer-events-none opacity-30 select-none" />
 
         {/* Athletic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80 pointer-events-none select-none" />
+        <div className="hero-bottom-fade absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80 pointer-events-none select-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#08080a] via-transparent to-[#08080a]/80 pointer-events-none select-none" />
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none select-none" />
 

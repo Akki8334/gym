@@ -157,3 +157,206 @@
   transform: translateY(-6px);
   box-shadow: 0 20px 35px -10px rgba(229, 35, 40, 0.25);
 }
+
+/* ========================================================
+   DAY / LIGHT MODE ATHLETIC SYSTEM
+   ======================================================== */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.theme-light {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Base container and section backgrounds in Day Mode */
+body.theme-light .bg-\[\#08080a\],
+body.theme-light .bg-\[\#060608\],
+body.theme-light .bg-\[\#0a0a0e\],
+body.theme-light .bg-\[\#0c0c10\],
+body.theme-light .bg-\[\#0d0d12\],
+body.theme-light .bg-\[\#0f0f14\] {
+  background-color: #f8fafc !important;
+}
+
+/* Cards & Elevated surfaces in Day Mode */
+body.theme-light .bg-\[\#111116\],
+body.theme-light .bg-\[\#111118\],
+body.theme-light .bg-\[\#121217\],
+body.theme-light .bg-\[\#121218\],
+body.theme-light .bg-\[\#14141c\],
+body.theme-light .bg-\[\#14141e\],
+body.theme-light .bg-\[\#15151c\],
+body.theme-light .bg-\[\#16161e\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+/* Secondary Panels, Sub-boxes, Table Cells in Day Mode */
+body.theme-light .bg-\[\#181820\],
+body.theme-light .bg-\[\#181822\],
+body.theme-light .bg-\[\#181824\],
+body.theme-light .bg-\[\#1a1a24\],
+body.theme-light .bg-\[\#1c1c28\],
+body.theme-light .bg-\[\#20202c\] {
+  background-color: #f1f5f9 !important;
+}
+
+/* Subtle backgrounds in zinc */
+body.theme-light .bg-zinc-950,
+body.theme-light .bg-zinc-900 {
+  background-color: #f8fafc !important;
+}
+body.theme-light .bg-zinc-900\/80,
+body.theme-light .bg-zinc-900\/60,
+body.theme-light .bg-zinc-900\/50,
+body.theme-light .bg-zinc-800 {
+  background-color: #f1f5f9 !important;
+}
+
+/* Borders in Day Mode */
+body.theme-light .border-\[\#181820\],
+body.theme-light .border-\[\#1c1c24\],
+body.theme-light .border-\[\#20202a\],
+body.theme-light .border-\[\#20202c\],
+body.theme-light .border-\[\#22222a\],
+body.theme-light .border-\[\#22222c\],
+body.theme-light .border-\[\#22222e\],
+body.theme-light .border-\[\#23232c\],
+body.theme-light .border-\[\#23232e\],
+body.theme-light .border-\[\#232330\],
+body.theme-light .border-\[\#262632\],
+body.theme-light .border-\[\#262634\],
+body.theme-light .border-\[\#282838\],
+body.theme-light .border-\[\#2a2a36\],
+body.theme-light .border-\[\#2a2a38\],
+body.theme-light .border-\[\#2a2a3c\],
+body.theme-light .border-\[\#2c2c3c\],
+body.theme-light .border-\[\#303040\],
+body.theme-light .border-\[\#303042\],
+body.theme-light .border-zinc-800,
+body.theme-light .border-zinc-800\/80,
+body.theme-light .border-zinc-700,
+body.theme-light .border-zinc-700\/80,
+body.theme-light .border-zinc-900 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Headings in Day Mode */
+body.theme-light h1:not(.keep-white),
+body.theme-light h2:not(.keep-white),
+body.theme-light h3:not(.keep-white),
+body.theme-light h4:not(.keep-white),
+body.theme-light .font-display:not(.keep-white) {
+  color: #0f172a;
+}
+
+/* Text Colors in Day Mode */
+body.theme-light .text-white:not(.keep-white) {
+  color: #0f172a !important;
+}
+body.theme-light .text-zinc-100:not(.keep-white),
+body.theme-light .text-zinc-200:not(.keep-white) {
+  color: #1e293b !important;
+}
+body.theme-light .text-zinc-300:not(.keep-white) {
+  color: #334155 !important;
+}
+body.theme-light .text-zinc-400 {
+  color: #64748b !important;
+}
+body.theme-light .text-zinc-500 {
+  color: #94a3b8 !important;
+}
+
+/* Preserve Brand Red and White text on Brand Elements */
+body.theme-light .bg-\[\#E52328\],
+body.theme-light .bg-\[\#c4181d\],
+body.theme-light .bg-\[\#F0523D\],
+body.theme-light .bg-red-600,
+body.theme-light .bg-red-700 {
+  color: #ffffff !important;
+}
+body.theme-light .bg-\[\#E52328\] *,
+body.theme-light .bg-\[\#c4181d\] *,
+body.theme-light .bg-\[\#F0523D\] *,
+body.theme-light .bg-red-600 *,
+body.theme-light .bg-red-700 * {
+  color: #ffffff !important;
+}
+body.theme-light .text-\[\#E52328\] {
+  color: #E52328 !important;
+}
+body.theme-light .text-\[\#F0523D\] {
+  color: #F0523D !important;
+}
+
+/* Inputs & Form Fields in Day Mode */
+body.theme-light input,
+body.theme-light textarea,
+body.theme-light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+body.theme-light input::placeholder,
+body.theme-light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Scrolled Navbar in Day Mode */
+body.theme-light header.is-scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+}
+body.theme-light header.is-scrolled nav a {
+  color: #475569 !important;
+}
+body.theme-light header.is-scrolled nav a:hover {
+  color: #E52328 !important;
+}
+body.theme-light header.is-scrolled .text-white {
+  color: #0f172a !important;
+}
+
+/* Hero Section cinematic preservation in Day Mode */
+body.theme-light .hero-section {
+  background-color: #08080a !important;
+}
+body.theme-light .hero-section h1,
+body.theme-light .hero-section h1 *,
+body.theme-light .hero-section .text-white,
+body.theme-light .hero-section .text-zinc-300,
+body.theme-light .hero-section .text-zinc-200 {
+  color: #ffffff !important;
+}
+body.theme-light .hero-bottom-fade {
+  background: linear-gradient(to bottom, transparent 0%, rgba(248, 250, 252, 0.85) 75%, #f8fafc 100%) !important;
+}
+
+/* Final CTA Section in Day Mode */
+body.theme-light .final-cta-section {
+  background-color: #08080a !important;
+}
+body.theme-light .final-cta-section h2,
+body.theme-light .final-cta-section h2 *,
+body.theme-light .final-cta-section .text-white,
+body.theme-light .final-cta-section .text-zinc-300 {
+  color: #ffffff !important;
+}
+
+/* Grid pattern in Day Mode */
+body.theme-light .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+/* Modals in Day Mode */
+body.theme-light .fixed.inset-0.bg-black\/85,
+body.theme-light .fixed.inset-0.bg-black\/80 {
+  background-color: rgba(15, 23, 42, 0.7) !important;
+}
+

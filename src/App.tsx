@@ -26,6 +26,7 @@ import { QuickSearchModal } from './components/QuickSearchModal';
 import { AudioPlayerWidget } from './components/AudioPlayerWidget';
 import { KineticMarquee } from './components/KineticMarquee';
 import { EnergyCalculator } from './components/EnergyCalculator';
+import { ThemeToggle } from './components/ThemeToggle';
 
 // Data types
 import { FitnessClass, CLASSES_DATA } from './data/classesData';
@@ -196,6 +197,9 @@ export default function App() {
 
       {/* Floating Drumline Hype Audio Synthesizer */}
       <AudioPlayerWidget />
+
+      {/* Floating Day / Night Switcher */}
+      <ThemeToggle variant="floating" />
 
       {/* Interactive Modals */}
       <FreePassModal

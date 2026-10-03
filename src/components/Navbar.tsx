@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Search, Phone, ChevronRight, Sparkles, MapPin } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   onOpenFreePass: () => void;
@@ -40,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#08080a]/95 backdrop-blur-md border-b border-[#22222a] py-3 shadow-2xl'
+            ? 'is-scrolled scrolled-navbar bg-[#08080a]/95 backdrop-blur-md border-b border-[#22222a] py-3 shadow-2xl'
             : 'bg-gradient-to-b from-black/90 via-black/40 to-transparent py-5'
         }`}
       >
@@ -80,7 +81,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
 
             {/* Right Action Icons & Primary CTA */}
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2.5">
+              {/* Day / Night Theme Switcher */}
+              <ThemeToggle variant="navbar" />
+
               <button
                 onClick={onOpenSearch}
                 className="p-2.5 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 border border-transparent hover:border-zinc-700/80 transition-all flex items-center gap-1.5 text-xs font-condensed"
@@ -93,25 +97,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <button
                 onClick={onOpenBooking}
-                className="px-4 py-2 rounded-lg border border-zinc-700 hover:border-zinc-500 text-zinc-200 hover:text-white text-xs font-condensed uppercase tracking-wider font-bold transition-all"
+                className="px-3.5 py-2 rounded-lg border border-zinc-700 hover:border-zinc-500 text-zinc-200 hover:text-white text-xs font-condensed uppercase tracking-wider font-bold transition-all"
               >
                 Book Class
               </button>
 
               <button
                 onClick={onOpenFreePass}
-                className="relative group px-5 py-2.5 rounded-lg bg-[#E52328] hover:bg-[#c4181d] text-white font-condensed font-extrabold uppercase text-xs sm:text-sm tracking-wider shadow-lg shadow-red-900/40 transition-all transform active:scale-95 flex items-center gap-1.5 animate-glow-pulse"
+                className="relative group px-4 py-2.5 rounded-lg bg-[#E52328] hover:bg-[#c4181d] text-white font-condensed font-extrabold uppercase text-xs sm:text-sm tracking-wider shadow-lg shadow-red-900/40 transition-all transform active:scale-95 flex items-center gap-1.5 animate-glow-pulse"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>START FREE WEEK</span>
               </button>
             </div>
 
-            {/* Mobile Hamburger & Quick CTA */}
+            {/* Mobile Actions: Day/Night Toggle, Quick Free Pass & Hamburger */}
             <div className="flex sm:hidden items-center gap-2">
+              <ThemeToggle variant="navbar" />
+
               <button
                 onClick={onOpenFreePass}
-                className="px-3 py-1.5 rounded bg-[#E52328] text-white font-condensed uppercase text-[11px] font-bold tracking-wider"
+                className="px-2.5 py-1.5 rounded bg-[#E52328] text-white font-condensed uppercase text-[11px] font-bold tracking-wider"
               >
                 FREE PASS
               </button>
@@ -162,6 +168,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="space-y-3 pt-6 border-t border-zinc-800">
+            {/* Day / Night Switcher for Mobile Drawer */}
+            <ThemeToggle variant="mobile" />
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
