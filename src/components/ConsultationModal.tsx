@@ -25,6 +25,20 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,14 +64,20 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+    >
       <div 
-        className="relative w-full max-w-lg bg-[#111116] border border-[#2a2a36] rounded-xl shadow-2xl p-6 sm:p-8 text-white animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#111116] border border-[#2a2a36] rounded-xl shadow-2xl p-5 sm:p-8 text-white animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
+        aria-modal="true"
       >
         <button 
           onClick={handleClose}
-          className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />

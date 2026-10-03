@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { X, Award, Flame, Calendar, Quote, ArrowRight } from 'lucide-react';
 import { InstagramIcon } from './SocialIcons';
 import { Trainer } from '../data/trainersData';
@@ -15,40 +16,60 @@ export const TrainerModal: React.FC<TrainerModalProps> = ({
   onClose,
   onBookSession
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen || !trainer) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
       <div 
-        className="relative w-full max-w-2xl bg-[#111116] border border-[#2a2a36] rounded-2xl shadow-2xl overflow-hidden text-white animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-2xl max-h-[88vh] bg-[#111116] border border-[#2a2a36] rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-white animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
+        aria-modal="true"
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 text-zinc-400 hover:text-white rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-sm transition-colors"
+          className="absolute top-3 right-3 z-30 p-2 text-zinc-300 hover:text-white rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/10 transition-all shadow-lg"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="flex flex-col md:flex-row w-full max-h-[88vh] overflow-y-auto md:overflow-hidden">
           {/* Trainer Image Column */}
-          <div className="relative h-64 md:h-full min-h-[300px] bg-zinc-900">
+          <div className="relative h-52 sm:h-64 md:h-auto md:w-5/12 bg-zinc-900 shrink-0">
             <img 
               src={trainer.image} 
               alt={trainer.name}
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111116] via-transparent to-transparent md:hidden" />
-            <div className="absolute bottom-4 left-4 z-10">
-              <span className="bg-[#E52328] text-white text-xs font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+            <div className="absolute bottom-3 left-3 z-10">
+              <span className="bg-[#E52328] text-white text-[11px] font-condensed font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
                 {trainer.experienceYears}+ Years Coaching
               </span>
             </div>
           </div>
 
           {/* Trainer Info Column */}
-          <div className="p-6 md:p-8 flex flex-col justify-between space-y-5">
+          <div className="p-5 sm:p-6 md:w-7/12 flex flex-col justify-between overflow-y-auto space-y-4">
             <div>
               <div className="text-xs uppercase font-condensed tracking-widest text-[#E52328] font-bold mb-1">
                 {trainer.role}

@@ -12,6 +12,20 @@ export const CompareMembershipsModal: React.FC<CompareMembershipsModalProps> = (
   onClose,
   onSelectPlan
 }) => {
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const comparisonFeatures = [
@@ -30,31 +44,39 @@ export const CompareMembershipsModal: React.FC<CompareMembershipsModalProps> = (
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
       <div 
-        className="relative w-full max-w-4xl bg-[#111116] border border-[#2a2a36] rounded-2xl shadow-2xl p-6 sm:p-8 text-white my-8 animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl max-h-[90vh] bg-[#111116] border border-[#2a2a36] rounded-2xl shadow-2xl p-5 sm:p-7 text-white flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
+        aria-modal="true"
       >
         <button 
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="text-xs uppercase font-condensed tracking-widest text-[#E52328] font-bold mb-1">
-          Plan Breakdown
+        <div className="shrink-0 mb-4">
+          <div className="text-xs uppercase font-condensed tracking-widest text-[#E52328] font-bold mb-1">
+            Plan Breakdown
+          </div>
+          <h3 className="font-display text-2xl sm:text-3xl text-white tracking-wide uppercase mb-1">
+            Compare All Memberships
+          </h3>
+          <p className="text-zinc-400 text-xs sm:text-sm max-w-xl">
+            Transparent pricing directly from E.F.F.E.C.T. Fitness Atlanta. No hidden initiation fees, no long-term contracts.
+          </p>
         </div>
-        <h3 className="font-display text-3xl sm:text-4xl text-white tracking-wide uppercase mb-2">
-          Compare All Memberships
-        </h3>
-        <p className="text-zinc-400 text-sm mb-6 max-w-xl">
-          Transparent pricing directly from E.F.F.E.C.T. Fitness Atlanta. No hidden initiation fees, no long-term contracts.
-        </p>
 
         {/* Comparison Table */}
-        <div className="overflow-x-auto border border-zinc-800 rounded-xl">
+        <div className="flex-1 overflow-auto border border-zinc-800 rounded-xl">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="bg-[#181822] border-b border-zinc-800 text-zinc-300">

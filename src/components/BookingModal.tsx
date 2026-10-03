@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Clock, MapPin, User, Flame, Smartphone, Calendar, AlertCircle } from 'lucide-react';
 import { ScheduleItem } from '../data/scheduleData';
 import confetti from 'canvas-confetti';
@@ -20,6 +20,20 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [attendeeEmail, setAttendeeEmail] = useState('');
   const [attendeePhone, setAttendeePhone] = useState('');
   const [bookingStatus, setBookingStatus] = useState<'form' | 'confirmed'>('form');
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
 
   if (!isOpen || !selectedClass) return null;
 
@@ -46,14 +60,20 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+    >
       <div 
-        className="relative w-full max-w-lg bg-[#111116] border border-[#2a2a36] rounded-xl shadow-2xl p-6 sm:p-8 text-white animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#111116] border border-[#2a2a36] rounded-xl shadow-2xl p-5 sm:p-7 text-white animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
+        aria-modal="true"
       >
         <button 
           onClick={handleClose}
-          className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
