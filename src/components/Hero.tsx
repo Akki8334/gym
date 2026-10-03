@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, Sparkles, ChevronDown, Flame, Play, X, ShieldAlert, Award, Users, Radio, Volume2 } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { AnimatedCounter } from './AnimatedCounter';
 
 interface HeroProps {
@@ -8,65 +8,55 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) => {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const videoId = "MO4sdsh1T4I";
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-12 overflow-hidden bg-[#08080a]">
-      {/* Background Cinematic YouTube Looping Video */}
+      {/* Background Cinematic YouTube Looping Video (Completely Ambient, Zero Controls) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         {/* Poster Fallback Image while iframe initializes */}
         <img
           src="https://images.squarespace-cdn.com/content/v1/5665daf8df40f3d958f6d59c/1762974895759-0VJASP3QTWVMN2PGL3I1/2I1A0569.jpeg"
           alt="E.F.F.E.C.T. Fitness Arena Background"
-          className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] contrast-125"
+          className="absolute inset-0 w-full h-full object-cover filter brightness-[0.35] contrast-125 pointer-events-none select-none"
         />
 
-        {/* Embedded Autoplaying Looping YouTube Video */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Embedded Autoplaying Looping YouTube Video without any controls */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1&disablekb=1&fs=0`}
-            title="E.F.F.E.C.T. Fitness Looping Video Banner"
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&disablekb=1&fs=0&autohide=1`}
+            title="E.F.F.E.C.T. Fitness Ambient Background Video"
+            tabIndex={-1}
+            aria-hidden="true"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full h-[56.25vw] pointer-events-none filter brightness-[0.44] contrast-125 saturate-110"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full h-[56.25vw] pointer-events-none select-none border-0 filter brightness-[0.44] contrast-125 saturate-110"
           />
         </div>
 
         {/* Scanline CRT overlay for broadcast energy */}
-        <div className="absolute inset-0 bg-scanline pointer-events-none opacity-30" />
+        <div className="absolute inset-0 bg-scanline pointer-events-none opacity-30 select-none" />
 
         {/* Athletic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#08080a] via-transparent to-[#08080a]/80" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80 pointer-events-none select-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#08080a] via-transparent to-[#08080a]/80 pointer-events-none select-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none select-none" />
 
         {/* Dynamic Accent Spotlights */}
-        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] bg-[#E52328]/25 rounded-full blur-[160px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/4 w-[360px] h-[360px] bg-[#F0523D]/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] bg-[#E52328]/25 rounded-full blur-[160px] pointer-events-none animate-pulse select-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-[360px] h-[360px] bg-[#F0523D]/15 rounded-full blur-[140px] pointer-events-none select-none" />
       </div>
 
       {/* Main Content Area */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto w-full">
         <div className="max-w-4xl space-y-6">
           {/* Eyebrow Badge with Live Pulse */}
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#181822]/90 border border-[#303040] backdrop-blur-md shadow-lg shadow-black/50">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#E52328] animate-ping" />
-              <span className="text-zinc-200 text-xs sm:text-sm font-condensed font-bold tracking-widest uppercase flex items-center gap-2">
-                <span>E.F.F.E.C.T. FITNESS</span>
-                <span className="text-zinc-600">•</span>
-                <span className="text-[#E52328]">ATLANTA'S PERFORMING ARTS GYM</span>
-              </span>
-            </div>
-
-            {/* Video Live Badge Button */}
-            <button
-              onClick={() => setIsVideoModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 hover:bg-[#E52328]/20 border border-zinc-700/80 hover:border-[#E52328] text-xs font-condensed uppercase tracking-wider text-zinc-300 hover:text-white transition-all backdrop-blur-md cursor-pointer group"
-            >
-              <Play className="w-3 h-3 text-[#E52328] fill-[#E52328] group-hover:scale-110 transition-transform" />
-              <span>Watch Video With Sound</span>
-            </button>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#181822]/90 border border-[#303040] backdrop-blur-md shadow-lg shadow-black/50">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E52328] animate-ping" />
+            <span className="text-zinc-200 text-xs sm:text-sm font-condensed font-bold tracking-widest uppercase flex items-center gap-2">
+              <span>E.F.F.E.C.T. FITNESS</span>
+              <span className="text-zinc-600">•</span>
+              <span className="text-[#E52328]">ATLANTA'S PERFORMING ARTS GYM</span>
+            </span>
           </div>
 
           {/* Massive Editorial Headline */}
@@ -168,31 +158,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
           </a>
         </div>
       </div>
-
-      {/* Fullscreen Video Modal (With Sound) */}
-      {isVideoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-          <div className="relative w-full max-w-4xl bg-black border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
-            <button
-              onClick={() => setIsVideoModalOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 text-white bg-black/60 hover:bg-[#E52328] rounded-full transition-colors"
-              aria-label="Close video"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            <div className="relative aspect-video w-full bg-black">
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0&modestbranding=1`}
-                title="E.F.F.E.C.T. Fitness Video Experience"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
