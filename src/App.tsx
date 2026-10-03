@@ -24,6 +24,8 @@ import { CompareMembershipsModal } from './components/CompareMembershipsModal';
 import { ConsultationModal } from './components/ConsultationModal';
 import { QuickSearchModal } from './components/QuickSearchModal';
 import { AudioPlayerWidget } from './components/AudioPlayerWidget';
+import { KineticMarquee } from './components/KineticMarquee';
+import { EnergyCalculator } from './components/EnergyCalculator';
 
 // Data types
 import { FitnessClass, CLASSES_DATA } from './data/classesData';
@@ -128,6 +130,9 @@ export default function App() {
           }}
         />
 
+        {/* Kinetic Ticker Marquee */}
+        <KineticMarquee theme="dark" />
+
         {/* 2. Brand Introduction & Pillars */}
         <BrandIntro onOpenFreePass={() => handleOpenFreePass()} />
 
@@ -136,6 +141,9 @@ export default function App() {
           onSelectClass={handleSelectClass}
           onBookClassDirect={handleBookClassDirect}
         />
+
+        {/* Interactive Calorie Burn & Energy Calculator */}
+        <EnergyCalculator onBookClass={handleBookClassDirect} />
 
         {/* 4. Interactive Class Schedule & Booking */}
         <ClassSchedule
@@ -170,6 +178,9 @@ export default function App() {
 
         {/* 12. Searchable Accordion FAQ */}
         <FAQSection />
+
+        {/* Red Kinetic Ticker Marquee */}
+        <KineticMarquee theme="red" reverse={true} />
 
         {/* 13. High-Impact Closing CTA */}
         <FinalCTA

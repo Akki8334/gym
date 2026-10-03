@@ -68,7 +68,7 @@ export const ClassExperience: React.FC<ClassExperienceProps> = ({
           {filteredClasses.map((item) => (
             <div
               key={item.id}
-              className="group relative bg-[#111116] border border-[#22222c] hover:border-[#E52328]/60 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-red-950/20"
+              className="group relative bg-[#111116] border border-[#22222c] hover:border-[#E52328] rounded-2xl overflow-hidden hover-card-3d flex flex-col justify-between"
             >
               {/* Image Area with Athletic Overlays */}
               <div className="relative h-64 overflow-hidden bg-zinc-900">

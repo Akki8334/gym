@@ -38,7 +38,7 @@ export const TrainerShowcase: React.FC<TrainerShowcaseProps> = ({ onSelectTraine
             <div
               key={trainer.id}
               onClick={() => onSelectTrainer(trainer)}
-              className="group relative bg-[#121218] border border-[#22222e] hover:border-[#E52328] rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-red-950/20"
+              className="group relative bg-[#121218] border border-[#22222e] hover:border-[#E52328] rounded-2xl overflow-hidden cursor-pointer hover-card-3d"
             >
               {/* Photo Area */}
               <div className="relative h-80 sm:h-96 overflow-hidden bg-zinc-900">

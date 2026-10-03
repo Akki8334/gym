@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TESTIMONIALS_DATA } from '../data/testimonialsData';
 import { Quote, Sparkles, ChevronLeft, ChevronRight, Award, Flame, ArrowRight } from 'lucide-react';
+import { TransformationBeforeAfter } from './TransformationBeforeAfter';
 
 interface TransformationSectionProps {
   onOpenFreePass: () => void;
@@ -42,8 +43,8 @@ export const TransformationSection: React.FC<TransformationSectionProps> = ({ on
           </p>
         </div>
 
-        {/* Featured Story Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#111116] border border-[#22222c] rounded-3xl p-6 sm:p-10">
+        {/* Featured Story Showcase Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#111116] border border-[#22222c] rounded-3xl p-6 sm:p-10 mb-12 shadow-2xl">
           {/* Left: Member Photo */}
           <div className="lg:col-span-5 relative h-80 sm:h-96 rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800">
             <img
@@ -54,7 +55,7 @@ export const TransformationSection: React.FC<TransformationSectionProps> = ({ on
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
             <div className="absolute bottom-4 left-4 right-4">
-              <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded inline-block mb-1">
+              <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded inline-block mb-1 shadow">
                 {active.achievement}
               </span>
               <div className="text-xs text-zinc-300">
@@ -113,6 +114,9 @@ export const TransformationSection: React.FC<TransformationSectionProps> = ({ on
             </div>
           </div>
         </div>
+
+        {/* Interactive Before & After Drag Comparison */}
+        <TransformationBeforeAfter onClaimFreePass={onOpenFreePass} />
       </div>
     </section>
   );
