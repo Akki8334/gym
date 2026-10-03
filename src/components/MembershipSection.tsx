@@ -42,7 +42,7 @@ export const MembershipSection: React.FC<MembershipSectionProps> = ({
               onClick={() => setIsAutopay(true)}
               className={`px-4 py-2 rounded-lg font-condensed uppercase tracking-wider text-xs font-bold transition-all ${
                 isAutopay
-                  ? 'bg-[#E52328] text-white shadow-md shadow-red-900/40'
+                  ? 'bg-[#E52328] !text-white shadow-md shadow-red-900/40'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
@@ -81,7 +81,7 @@ export const MembershipSection: React.FC<MembershipSectionProps> = ({
                     <span
                       className={`text-[10px] font-condensed font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
                         plan.isPopular
-                          ? 'bg-[#E52328] text-white shadow'
+                          ? 'bg-[#E52328] !text-white shadow-md'
                           : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
                       }`}
                     >

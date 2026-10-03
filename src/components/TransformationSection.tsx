@@ -54,11 +54,11 @@ export const TransformationSection: React.FC<TransformationSectionProps> = ({ on
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-            <div className="absolute bottom-4 left-4 right-4">
-              <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded inline-block mb-1 shadow">
+            <div className="absolute bottom-4 left-4 right-4 z-10">
+              <span className="bg-[#E52328] !text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded inline-block mb-1 shadow-md">
                 {active.achievement}
               </span>
-              <div className="text-xs text-zinc-300">
+              <div className="text-xs !text-white/90 font-medium">
                 E.F.F.E.C.T. Member Since {active.memberSince}
               </div>
             </div>

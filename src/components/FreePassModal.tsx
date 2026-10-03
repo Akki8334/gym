@@ -223,7 +223,7 @@ export const FreePassModal: React.FC<FreePassModalProps> = ({ isOpen, onClose, d
 
             {/* Digital Pass Card */}
             <div className="bg-[#181822] border-2 border-dashed border-[#E52328]/60 rounded-xl p-5 text-left relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-[#E52328] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl">
+              <div className="absolute top-0 right-0 bg-[#E52328] !text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl shadow-sm">
                 CONFIRMED $0 PASS
               </div>
 

@@ -69,7 +69,7 @@ export const ClassSchedule: React.FC<ClassScheduleProps> = ({ onBookClass, onOpe
                 onClick={() => setFilterCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-lg font-condensed uppercase tracking-wider font-semibold transition-colors ${
                   filterCategory === cat.id
-                    ? 'bg-zinc-200 text-black'
+                    ? 'bg-[#E52328] text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
                 }`}
               >

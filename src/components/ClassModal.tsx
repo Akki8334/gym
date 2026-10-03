@@ -47,10 +47,10 @@ export const ClassModal: React.FC<ClassModalProps> = ({
         {/* Close Button - Always pinned top-right */}
         <button 
           onClick={onClose}
-          className="absolute top-3 right-3 z-30 p-2 text-zinc-300 hover:text-white rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/10 transition-all shadow-lg"
+          className="absolute top-3 right-3 z-30 p-2 !text-white hover:text-white rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 transition-all shadow-lg"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5 !text-white" />
         </button>
 
         {/* Header Hero Banner - Compact athletic height */}
@@ -60,15 +60,15 @@ export const ClassModal: React.FC<ClassModalProps> = ({
             alt={fitnessClass.name}
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111116] via-[#111116]/60 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
           
-          <div className="absolute bottom-3 left-4 sm:left-6 right-14">
-            <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2 py-0.5 rounded inline-block mb-1 shadow">
+          <div className="absolute bottom-3 left-4 sm:left-6 right-14 z-10">
+            <span className="bg-[#E52328] !text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-0.5 rounded inline-block mb-1 shadow-md">
               {fitnessClass.category}
             </span>
             <h3 
               id="class-modal-title"
-              className="font-display text-2xl sm:text-3xl text-white tracking-wide uppercase leading-tight line-clamp-1 drop-shadow-md"
+              className="font-display text-2xl sm:text-3xl !text-white tracking-wide uppercase leading-tight line-clamp-1 drop-shadow-md"
             >
               {fitnessClass.name}
             </h3>

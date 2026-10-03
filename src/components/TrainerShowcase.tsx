@@ -47,18 +47,18 @@ export const TrainerShowcase: React.FC<TrainerShowcaseProps> = ({ onSelectTraine
                   alt={trainer.name}
                   className="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121218] via-[#121218]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
                 {/* Experience Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="bg-[#E52328] text-white text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-md">
                     {trainer.experienceYears}+ YRS COACHING
                   </span>
                 </div>
 
                 {/* Nickname pill */}
                 {trainer.nickname && (
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/10 text-[11px] font-condensed font-semibold uppercase text-zinc-300">
+                  <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/20 text-[11px] font-condensed font-semibold uppercase text-white shadow-md z-10">
                     "{trainer.nickname}"
                   </div>
                 )}

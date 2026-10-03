@@ -123,18 +123,18 @@ export const OnDemandSection: React.FC<OnDemandSectionProps> = ({ onOpenFreePass
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
 
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#E52328] text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#E52328] !text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase shadow z-10">
                     <span className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
-                    <span>LIVESTREAM NOW</span>
+                    <span className="!text-white">LIVESTREAM NOW</span>
                   </div>
 
-                  <div className="absolute top-3 right-3 bg-black/60 backdrop-blur text-white text-[10px] font-mono px-2 py-0.5 rounded">
+                  <div className="absolute top-3 right-3 bg-black/70 backdrop-blur !text-white text-[10px] font-mono px-2 py-0.5 rounded border border-white/20 shadow z-10">
                     428 Watching
                   </div>
 
-                  <div className="absolute bottom-3 left-3 right-3 text-left">
-                    <div className="text-[10px] uppercase font-condensed tracking-wider text-zinc-300">Coach Dooley & Team</div>
-                    <div className="font-display text-lg text-white">Full-Body High-Impact Burn</div>
+                  <div className="absolute bottom-3 left-3 right-3 text-left z-10">
+                    <div className="text-[10px] uppercase font-condensed tracking-wider !text-white/80">Coach Dooley & Team</div>
+                    <div className="font-display text-lg !text-white">Full-Body High-Impact Burn</div>
                   </div>
                 </div>
 

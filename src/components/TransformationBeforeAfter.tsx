@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
-import { Sparkles, Trophy, Award, Flame, ArrowRight, ArrowLeftRight, CheckCircle2 } from 'lucide-react';
+import React, { useState, useRef, useCallback } from 'react';
+import { 
+  Sparkles, 
+  Trophy, 
+  ArrowRight, 
+  ArrowLeftRight, 
+  CheckCircle2, 
+  ChevronsLeftRight,
+  Flame,
+  RotateCcw
+} from 'lucide-react';
 
 export const TransformationBeforeAfter: React.FC<{ onClaimFreePass: () => void }> = ({ onClaimFreePass }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
   const [activeStory, setActiveStory] = useState(0);
 
   const stories = [
@@ -37,16 +48,65 @@ export const TransformationBeforeAfter: React.FC<{ onClaimFreePass: () => void }
 
   const current = stories[activeStory];
 
-  const handleSliderMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const pos = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-    setSliderPos(pos);
+  // Precise pointer calculation
+  const updatePosition = useCallback((clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPos(Math.round(percentage * 10) / 10);
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    setIsDragging(true);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // Fallback if setPointerCapture is unsupported
+    }
+    updatePosition(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    updatePosition(e.clientX);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      setIsDragging(false);
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {
+        // Fallback
+      }
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setSliderPos(prev => Math.max(0, prev - 5));
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setSliderPos(prev => Math.min(100, prev + 5));
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      setSliderPos(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      setSliderPos(100);
+    }
   };
 
   return (
-    <div className="py-16 bg-[#111116] border border-[#22222e] rounded-3xl p-6 sm:p-10 my-12">
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+    <div className="py-16 bg-[#111116] border border-[#22222e] rounded-3xl p-6 sm:p-10 my-12 shadow-2xl relative overflow-hidden">
+      {/* Background Accent Glow */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-80 bg-[#E52328]/10 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Header & Tabs */}
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 relative z-10">
         <div>
           <div className="inline-flex items-center gap-2 text-[#E52328] font-condensed font-bold uppercase tracking-widest text-xs mb-2">
             <ArrowLeftRight className="w-3.5 h-3.5" />
@@ -66,65 +126,148 @@ export const TransformationBeforeAfter: React.FC<{ onClaimFreePass: () => void }
                 setActiveStory(idx);
                 setSliderPos(50);
               }}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-condensed uppercase tracking-wider font-bold transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-condensed uppercase tracking-wider font-bold transition-all flex items-center gap-2 ${
                 activeStory === idx
-                  ? 'bg-[#E52328] text-white shadow'
-                  : 'bg-[#181822] text-zinc-400 hover:text-white border border-zinc-800'
+                  ? 'bg-[#E52328] text-white shadow-lg shadow-red-900/40 ring-2 ring-red-500/50'
+                  : 'bg-[#181822] text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700'
               }`}
             >
-              {s.name.split(' ')[0]} ({s.stat.split(' ')[0]})
+              <Flame className={`w-3.5 h-3.5 ${activeStory === idx ? 'text-white' : 'text-[#E52328]'}`} />
+              <span>{s.name.split(' ')[0]} ({s.stat.split(' ')[0]})</span>
             </button>
           ))}
         </div>
       </div>
 
       {/* Interactive Drag Split Screen */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         {/* Slider Visual Container */}
-        <div 
-          className="lg:col-span-8 relative h-80 sm:h-[420px] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-zinc-800 shadow-2xl"
-          onMouseMove={handleSliderMove}
-          onTouchMove={handleSliderMove}
-        >
-          {/* AFTER Image (Full Background) */}
-          <img
-            src={current.afterImg}
-            alt={`${current.name} After`}
-            className="absolute inset-0 w-full h-full object-cover filter brightness-105"
-          />
-          <div className="absolute top-4 right-4 bg-emerald-600 text-white font-condensed uppercase tracking-wider text-xs font-bold px-3 py-1 rounded shadow">
-            RESULT / PRESENT
-          </div>
-
-          {/* BEFORE Image (Clipped Left Layer) */}
-          <div
-            className="absolute inset-0 overflow-hidden"
-            style={{ width: `${sliderPos}%` }}
+        <div className="lg:col-span-8 flex flex-col gap-4">
+          <div 
+            ref={containerRef}
+            role="slider"
+            aria-label="Drag to reveal before and after comparison"
+            aria-valuenow={Math.round(sliderPos)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            tabIndex={0}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            onKeyDown={handleKeyDown}
+            className="relative h-80 sm:h-[460px] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-zinc-800 shadow-2xl touch-none focus:outline-none focus:ring-2 focus:ring-[#E52328]"
           >
+            {/* 1. AFTER Image (Base Layer - 100% Full Width & Height) */}
             <img
-              src={current.beforeImg}
-              alt={`${current.name} Before`}
-              className="absolute inset-0 w-full h-full object-cover filter brightness-75 contrast-125 max-w-none"
-              style={{ width: '100%', height: '100%' }}
+              src={current.afterImg}
+              alt={`${current.name} After Transformation`}
+              className="absolute inset-0 w-full h-full object-cover object-center filter brightness-105 pointer-events-none select-none"
+              draggable={false}
             />
-            <div className="absolute top-4 left-4 bg-zinc-800 text-zinc-200 font-condensed uppercase tracking-wider text-xs font-bold px-3 py-1 rounded shadow">
-              DAY 1 START
+
+            {/* AFTER Badge (Top Right) */}
+            <div className="absolute top-4 right-4 bg-emerald-600/90 backdrop-blur-md text-white font-condensed uppercase tracking-wider text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5 z-10 pointer-events-none">
+              <Trophy className="w-3.5 h-3.5" />
+              <span>PRESENT RESULT</span>
+            </div>
+
+            {/* 2. BEFORE Image (Clipped Overlay - ZERO STRETCHING / NO DISTORTION) */}
+            <div
+              className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none will-change-[clip-path]"
+              style={{
+                clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+                transition: isDragging ? 'none' : 'clip-path 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <img
+                src={current.beforeImg}
+                alt={`${current.name} Before Transformation`}
+                className="absolute inset-0 w-full h-full object-cover object-center filter brightness-95 contrast-110 pointer-events-none select-none"
+                draggable={false}
+              />
+
+              {/* BEFORE Badge (Top Left) */}
+              <div className="absolute top-4 left-4 bg-zinc-900/95 backdrop-blur-md text-white border border-zinc-700/60 font-condensed uppercase tracking-wider text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5 z-10 pointer-events-none">
+                <span className="w-2 h-2 rounded-full bg-[#E52328] animate-pulse" />
+                <span>DAY 1 START</span>
+              </div>
+            </div>
+
+            {/* 3. Divider Line & Ergonomic Handle */}
+            <div
+              className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_15px_rgba(229,35,40,0.9),0_0_30px_rgba(255,255,255,0.8)] z-20 pointer-events-none will-change-[left]"
+              style={{ 
+                left: `${sliderPos}%`,
+                transition: isDragging ? 'none' : 'left 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              {/* Center Handle Knob */}
+              <div
+                className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E52328] border-2 border-white flex items-center justify-center text-white shadow-[0_0_20px_rgba(229,35,40,0.85)] transition-all duration-200 pointer-events-none ${
+                  isDragging ? 'scale-115 ring-4 ring-[#E52328]/50 shadow-[0_0_30px_rgba(229,35,40,1)]' : 'scale-100'
+                }`}
+              >
+                <ChevronsLeftRight className="w-5 h-5 text-white" />
+              </div>
+            </div>
+
+            {/* Floating Instructional Pill */}
+            <div 
+              className={`absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/85 backdrop-blur-md px-4 py-1.5 rounded-full text-[11px] text-white font-condensed uppercase tracking-wider pointer-events-none shadow-2xl border border-white/10 z-10 transition-opacity duration-300 ${
+                isDragging ? 'opacity-30' : 'opacity-100'
+              }`}
+            >
+              <span className="text-[#E52328] font-bold">DRAG OR CLICK</span> TO REVEAL TRANSFORMATION
             </div>
           </div>
 
-          {/* Draggable Divider Handle Line */}
-          <div
-            className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(255,255,255,0.8)]"
-            style={{ left: `${sliderPos}%` }}
-          >
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#E52328] border-2 border-white flex items-center justify-center text-white shadow-xl">
-              <ArrowLeftRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
+          {/* Quick Preset Buttons & Reveal Status Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSliderPos(100)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-condensed uppercase tracking-wider font-semibold transition-all ${
+                  sliderPos >= 95 
+                    ? 'bg-zinc-700 text-white border border-zinc-600' 
+                    : 'bg-[#181822] text-zinc-400 hover:text-white border border-zinc-800'
+                }`}
+              >
+                Day 1 (100% Start)
+              </button>
 
-          {/* Instruction helper tag */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[11px] text-zinc-300 font-condensed uppercase tracking-wider pointer-events-none">
-            Drag left / right to compare
+              <button
+                type="button"
+                onClick={() => setSliderPos(50)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-condensed uppercase tracking-wider font-semibold transition-all flex items-center gap-1.5 ${
+                  sliderPos >= 45 && sliderPos <= 55 
+                    ? 'bg-[#E52328] text-white shadow-md' 
+                    : 'bg-[#181822] text-zinc-400 hover:text-white border border-zinc-800'
+                }`}
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Split (50/50)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSliderPos(0)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-condensed uppercase tracking-wider font-semibold transition-all ${
+                  sliderPos <= 5 
+                    ? 'bg-emerald-600 text-white' 
+                    : 'bg-[#181822] text-zinc-400 hover:text-white border border-zinc-800'
+                }`}
+              >
+                Result (100% Present)
+              </button>
+            </div>
+
+            <div className="text-[11px] font-condensed uppercase tracking-wider text-zinc-400 flex items-center gap-2 font-mono">
+              <span className="text-zinc-300 font-bold">{Math.round(sliderPos)}%</span> Before
+              <span className="text-zinc-600">/</span>
+              <span className="text-emerald-400 font-bold">{Math.round(100 - sliderPos)}%</span> After
+            </div>
           </div>
         </div>
 
@@ -134,10 +277,10 @@ export const TransformationBeforeAfter: React.FC<{ onClaimFreePass: () => void }
             <span className="text-[11px] font-condensed uppercase tracking-widest text-[#E52328] font-bold">
               VERIFIED ATLANTA ATHLETE
             </span>
-            <h4 className="font-display text-3xl text-white uppercase tracking-wide leading-tight">
+            <h4 className="font-display text-3xl sm:text-4xl text-white uppercase tracking-wide leading-tight">
               {current.name}
             </h4>
-            <div className="font-display text-2xl text-emerald-400">
+            <div className="font-display text-2xl text-emerald-400 tracking-wide">
               {current.stat}
             </div>
             <p className="text-xs text-zinc-400 font-medium">
@@ -166,10 +309,10 @@ export const TransformationBeforeAfter: React.FC<{ onClaimFreePass: () => void }
 
           <button
             onClick={onClaimFreePass}
-            className="w-full py-3 bg-[#E52328] hover:bg-[#c4181d] text-white font-condensed uppercase tracking-wider text-xs font-bold rounded-lg transition-all shadow-md shadow-red-900/30 flex items-center justify-center gap-2"
+            className="w-full py-3.5 bg-[#E52328] hover:bg-[#c4181d] text-white font-condensed uppercase tracking-wider text-xs font-bold rounded-xl transition-all shadow-lg shadow-red-900/30 flex items-center justify-center gap-2 group cursor-pointer"
           >
             <span>START YOUR TRANSFORMATION TODAY</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
       </div>

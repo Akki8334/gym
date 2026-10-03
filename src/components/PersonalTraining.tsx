@@ -118,7 +118,7 @@ export const PersonalTraining: React.FC<PersonalTrainingProps> = ({ onOpenConsul
                       onClick={() => setGoal(item.id)}
                       className={`p-2.5 rounded-lg border text-left font-medium transition-all ${
                         goal === item.id
-                          ? 'bg-[#E52328]/20 border-[#E52328] text-white'
+                          ? 'bg-[#E52328] !text-white border-[#E52328] shadow-sm'
                           : 'bg-[#181822] border-zinc-800 text-zinc-400 hover:text-white'
                       }`}
                     >
@@ -138,7 +138,7 @@ export const PersonalTraining: React.FC<PersonalTrainingProps> = ({ onOpenConsul
                     onClick={() => setFormat('1-on-1')}
                     className={`p-2.5 rounded-lg border text-center font-condensed uppercase tracking-wider font-bold transition-all ${
                       format === '1-on-1'
-                        ? 'bg-white text-black border-white'
+                        ? 'bg-[#E52328] !text-white border-[#E52328] shadow-sm'
                         : 'bg-[#181822] border-zinc-800 text-zinc-400 hover:text-white'
                     }`}
                   >
@@ -148,7 +148,7 @@ export const PersonalTraining: React.FC<PersonalTrainingProps> = ({ onOpenConsul
                     onClick={() => setFormat('small-group')}
                     className={`p-2.5 rounded-lg border text-center font-condensed uppercase tracking-wider font-bold transition-all ${
                       format === 'small-group'
-                        ? 'bg-white text-black border-white'
+                        ? 'bg-[#E52328] !text-white border-[#E52328] shadow-sm'
                         : 'bg-[#181822] border-zinc-800 text-zinc-400 hover:text-white'
                     }`}
                   >

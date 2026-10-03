@@ -68,7 +68,7 @@ export const ClassExperience: React.FC<ClassExperienceProps> = ({
           {filteredClasses.map((item) => (
             <div
               key={item.id}
-              className="group relative bg-[#111116] border border-[#22222c] hover:border-[#E52328] rounded-2xl overflow-hidden hover-card-3d flex flex-col justify-between"
+              className="group relative rounded-2xl overflow-hidden hover-card-3d flex flex-col justify-between border transition-all bg-[#111116] border-[#22222c] hover:border-[#E52328]"
             >
               {/* Image Area with Athletic Overlays */}
               <div className="relative h-64 overflow-hidden bg-zinc-900">
@@ -77,28 +77,28 @@ export const ClassExperience: React.FC<ClassExperienceProps> = ({
                   alt={item.name}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111116] via-[#111116]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
                 {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                  <span className="bg-[#E52328] text-white text-[11px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow">
+                <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
+                  <span className="bg-[#E52328] text-white text-[11px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-md">
                     {item.category}
                   </span>
 
-                  <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 text-white text-xs font-semibold">
+                  <div className="flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 text-white text-xs font-bold shadow-md">
                     <Flame className="w-3.5 h-3.5 text-[#E52328] fill-[#E52328]" />
                     <span>Lvl {item.intensity} / 5</span>
                   </div>
                 </div>
 
                 {/* Bottom Overlay Info */}
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-zinc-300 font-condensed uppercase tracking-wider">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-xs font-condensed uppercase tracking-wider z-10">
+                  <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/15 text-white font-medium shadow-sm">
+                    <Clock className="w-3.5 h-3.5 text-zinc-300" />
                     <span>{item.durationMinutes} Mins</span>
                   </span>
-                  <span className="flex items-center gap-1 text-emerald-400 font-bold">
-                    <Dumbbell className="w-3.5 h-3.5" />
+                  <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/15 text-emerald-400 font-bold shadow-sm">
+                    <Dumbbell className="w-3.5 h-3.5 text-emerald-400" />
                     <span>{item.caloriesBurned}</span>
                   </span>
                 </div>
@@ -107,33 +107,33 @@ export const ClassExperience: React.FC<ClassExperienceProps> = ({
               {/* Card Body */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <div className="text-[11px] font-condensed uppercase tracking-wider text-zinc-400 font-semibold">
+                  <div className="text-[11px] font-condensed uppercase tracking-wider font-semibold text-zinc-400">
                     Lead: {item.trainerRole}
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl text-white tracking-wide uppercase group-hover:text-[#E52328] transition-colors leading-tight">
+                  <h3 className="font-display text-2xl sm:text-3xl tracking-wide uppercase group-hover:text-[#E52328] transition-colors leading-tight text-white">
                     {item.name}
                   </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm line-clamp-3 leading-relaxed">
+                  <p className="text-xs sm:text-sm line-clamp-3 leading-relaxed text-zinc-400">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Card Action Buttons */}
-                <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-2">
+                <div className="pt-4 border-t flex items-center gap-2 border-zinc-800/80">
                   <button
                     onClick={() => onSelectClass(item)}
-                    className="flex-1 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg font-condensed uppercase tracking-wider text-xs font-bold transition-colors"
+                    className="flex-1 py-2.5 rounded-lg font-condensed uppercase tracking-wider text-xs font-bold transition-colors bg-zinc-800 hover:bg-zinc-700 text-white"
                   >
                     View Class Details
                   </button>
 
                   <button
                     onClick={() => onBookClassDirect(item.name)}
-                    className="p-2.5 bg-[#E52328] hover:bg-[#c4181d] text-white rounded-lg transition-colors group-hover:scale-105"
+                    className="p-2.5 bg-[#E52328] hover:bg-[#c4181d] text-white rounded-lg transition-colors group-hover:scale-105 shadow-md flex items-center justify-center shrink-0"
                     title={`Book ${item.name}`}
                     aria-label={`Book ${item.name}`}
                   >
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 text-white" />
                   </button>
                 </div>
               </div>

@@ -46,10 +46,10 @@ export const TrainerModal: React.FC<TrainerModalProps> = ({
       >
         <button 
           onClick={onClose}
-          className="absolute top-3 right-3 z-30 p-2 text-zinc-300 hover:text-white rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/10 transition-all shadow-lg"
+          className="absolute top-3 right-3 z-30 p-2 !text-white hover:text-white rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 transition-all shadow-lg"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5 !text-white" />
         </button>
 
         <div className="flex flex-col md:flex-row w-full max-h-[88vh] overflow-y-auto md:overflow-hidden">
@@ -60,9 +60,9 @@ export const TrainerModal: React.FC<TrainerModalProps> = ({
               alt={trainer.name}
               className="w-full h-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111116] via-transparent to-transparent md:hidden" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
             <div className="absolute bottom-3 left-3 z-10">
-              <span className="bg-[#E52328] text-white text-[11px] font-condensed font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+              <span className="bg-[#E52328] !text-white text-[11px] font-condensed font-bold uppercase tracking-wider px-2.5 py-0.5 rounded shadow-md">
                 {trainer.experienceYears}+ Years Coaching
               </span>
             </div>
