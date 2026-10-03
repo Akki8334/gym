@@ -198,9 +198,6 @@ export default function App() {
       {/* Floating Drumline Hype Audio Synthesizer */}
       <AudioPlayerWidget />
 
-      {/* Floating Day / Night Switcher */}
-      <ThemeToggle variant="floating" />
-
       {/* Interactive Modals */}
       <FreePassModal
         isOpen={isFreePassOpen}

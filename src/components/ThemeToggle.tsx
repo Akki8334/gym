@@ -3,7 +3,7 @@ import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface ThemeToggleProps {
-  variant?: 'navbar' | 'mobile' | 'floating';
+  variant?: 'navbar' | 'mobile';
   className?: string;
 }
 
@@ -12,14 +12,18 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'navbar', cl
 
   if (variant === 'mobile') {
     return (
-      <div className={`flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 ${className}`}>
-        <div className="flex items-center gap-2">
+      <div className={`flex items-center justify-between p-3.5 rounded-xl transition-colors ${
+        isDark ? 'bg-zinc-900/90 border border-zinc-800' : 'bg-slate-100 border border-slate-200'
+      } ${className}`}>
+        <div className="flex items-center gap-2.5">
           {isDark ? (
             <Moon className="w-4 h-4 text-amber-400" />
           ) : (
             <Sun className="w-4 h-4 text-amber-500" />
           )}
-          <span className="text-xs font-condensed font-bold tracking-wider uppercase text-zinc-300">
+          <span className={`text-xs font-condensed font-bold tracking-wider uppercase ${
+            isDark ? 'text-zinc-200' : 'text-slate-800'
+          }`}>
             Appearance: {isDark ? 'Night Mode' : 'Day Mode'}
           </span>
         </div>
@@ -27,7 +31,9 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'navbar', cl
         <button
           onClick={toggleTheme}
           type="button"
-          className="relative inline-flex h-7 w-16 items-center rounded-full bg-zinc-800 border border-zinc-700 p-0.5 transition-colors focus:outline-none"
+          className={`relative inline-flex h-7 w-16 items-center rounded-full border p-0.5 transition-colors focus:outline-none ${
+            isDark ? 'bg-zinc-800 border-zinc-700' : 'bg-slate-200 border-slate-300'
+          }`}
           aria-label={`Switch to ${isDark ? 'Day' : 'Night'} mode`}
         >
           <span
@@ -37,7 +43,9 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'navbar', cl
           >
             {isDark ? <Moon className="w-3 h-3 text-white" /> : <Sun className="w-3 h-3 text-white" />}
           </span>
-          <span className="absolute right-2 text-[10px] font-bold text-zinc-400 select-none">
+          <span className={`absolute ${isDark ? 'right-2' : 'left-2'} text-[9px] font-bold ${
+            isDark ? 'text-zinc-400' : 'text-slate-600'
+          } select-none`}>
             {isDark ? 'NIGHT' : 'DAY'}
           </span>
         </button>
@@ -45,52 +53,27 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ variant = 'navbar', cl
     );
   }
 
-  if (variant === 'floating') {
-    return (
-      <button
-        onClick={toggleTheme}
-        type="button"
-        className={`fixed bottom-5 left-5 z-40 flex items-center gap-2 px-3 py-2 rounded-full shadow-2xl backdrop-blur-md transition-all duration-300 group hover:scale-105 ${
-          isDark
-            ? 'bg-[#181822]/90 border border-[#303042] text-zinc-200 hover:text-white shadow-black/60'
-            : 'bg-white/95 border border-slate-200 text-slate-800 hover:text-black shadow-slate-300/60'
-        } ${className}`}
-        aria-label={`Toggle theme: Currently ${isDark ? 'Night' : 'Day'} Mode`}
-        title={`Click to switch to ${isDark ? 'Day' : 'Night'} Mode`}
-      >
-        <div className={`p-1 rounded-full transition-transform duration-300 group-hover:rotate-45 ${
-          isDark ? 'bg-amber-400/20 text-amber-300' : 'bg-amber-500/20 text-amber-600'
-        }`}>
-          {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </div>
-        <span className="text-[11px] font-condensed font-bold uppercase tracking-wider pr-1">
-          {isDark ? 'DAY MODE' : 'NIGHT MODE'}
-        </span>
-      </button>
-    );
-  }
-
-  // Default navbar variant
+  // Navbar variant
   return (
     <button
       onClick={toggleTheme}
       type="button"
-      className={`p-2 sm:px-3 sm:py-2 rounded-lg border transition-all duration-200 flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-wider group ${
+      className={`p-2 sm:px-3 sm:py-2 rounded-lg border transition-all duration-200 flex items-center gap-1.5 text-xs font-condensed font-bold uppercase tracking-wider group focus:outline-none ${
         isDark
-          ? 'bg-zinc-900/80 border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-600'
-          : 'bg-slate-100 border-slate-300 text-slate-700 hover:text-slate-900 hover:border-slate-400'
+          ? 'bg-zinc-900/80 border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700'
+          : 'bg-white border-slate-300 text-slate-800 hover:bg-slate-100 hover:border-slate-400 shadow-sm'
       } ${className}`}
       aria-label={`Switch to ${isDark ? 'Day' : 'Night'} mode`}
       title={`Switch to ${isDark ? 'Day' : 'Night'} mode`}
     >
-      <div className="relative w-4 h-4">
+      <div className="relative w-4 h-4 flex items-center justify-center">
         {isDark ? (
           <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
         ) : (
-          <Moon className="w-4 h-4 text-indigo-600 group-hover:-rotate-12 transition-transform duration-300" />
+          <Moon className="w-4 h-4 text-slate-700 group-hover:-rotate-12 transition-transform duration-300" />
         )}
       </div>
-      <span className="hidden md:inline text-[11px]">
+      <span className={`hidden md:inline text-[11px] ${isDark ? 'text-zinc-300 group-hover:text-white' : 'text-slate-700'}`}>
         {isDark ? 'DAY' : 'NIGHT'}
       </span>
     </button>

@@ -170,130 +170,99 @@ body.theme-light {
   color: #1e293b;
 }
 
-/* Base container and section backgrounds in Day Mode */
-body.theme-light .bg-\[\#08080a\],
-body.theme-light .bg-\[\#060608\],
-body.theme-light .bg-\[\#0a0a0e\],
-body.theme-light .bg-\[\#0c0c10\],
-body.theme-light .bg-\[\#0d0d12\],
-body.theme-light .bg-\[\#0f0f14\] {
+/* Base page and section backgrounds in Day Mode (excluding isolated hero) */
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section),
+body.theme-light footer {
   background-color: #f8fafc !important;
 }
 
-/* Cards & Elevated surfaces in Day Mode */
-body.theme-light .bg-\[\#111116\],
-body.theme-light .bg-\[\#111118\],
-body.theme-light .bg-\[\#121217\],
-body.theme-light .bg-\[\#121218\],
-body.theme-light .bg-\[\#14141c\],
-body.theme-light .bg-\[\#14141e\],
-body.theme-light .bg-\[\#15151c\],
-body.theme-light .bg-\[\#16161e\] {
+/* Cards & Elevated surfaces in Day Mode (outside hero & CTA) */
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#111116\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#111118\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#121217\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#121218\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#14141c\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#14141e\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#15151c\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#16161e\],
+body.theme-light footer .bg-\[\#111116\],
+body.theme-light footer .bg-\[\#121218\],
+body.theme-light .class-modal-dialog,
+body.theme-light [role="dialog"] {
   background-color: #ffffff !important;
-  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
 }
 
 /* Secondary Panels, Sub-boxes, Table Cells in Day Mode */
-body.theme-light .bg-\[\#181820\],
-body.theme-light .bg-\[\#181822\],
-body.theme-light .bg-\[\#181824\],
-body.theme-light .bg-\[\#1a1a24\],
-body.theme-light .bg-\[\#1c1c28\],
-body.theme-light .bg-\[\#20202c\] {
-  background-color: #f1f5f9 !important;
-}
-
-/* Subtle backgrounds in zinc */
-body.theme-light .bg-zinc-950,
-body.theme-light .bg-zinc-900 {
-  background-color: #f8fafc !important;
-}
-body.theme-light .bg-zinc-900\/80,
-body.theme-light .bg-zinc-900\/60,
-body.theme-light .bg-zinc-900\/50,
-body.theme-light .bg-zinc-800 {
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#181820\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#181822\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#181824\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#1a1a24\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#1c1c28\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-\[\#20202c\],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-zinc-900,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .bg-zinc-800,
+body.theme-light [role="dialog"] .bg-\[\#181822\],
+body.theme-light [role="dialog"] .bg-zinc-900\/60 {
   background-color: #f1f5f9 !important;
 }
 
 /* Borders in Day Mode */
-body.theme-light .border-\[\#181820\],
-body.theme-light .border-\[\#1c1c24\],
-body.theme-light .border-\[\#20202a\],
-body.theme-light .border-\[\#20202c\],
-body.theme-light .border-\[\#22222a\],
-body.theme-light .border-\[\#22222c\],
-body.theme-light .border-\[\#22222e\],
-body.theme-light .border-\[\#23232c\],
-body.theme-light .border-\[\#23232e\],
-body.theme-light .border-\[\#232330\],
-body.theme-light .border-\[\#262632\],
-body.theme-light .border-\[\#262634\],
-body.theme-light .border-\[\#282838\],
-body.theme-light .border-\[\#2a2a36\],
-body.theme-light .border-\[\#2a2a38\],
-body.theme-light .border-\[\#2a2a3c\],
-body.theme-light .border-\[\#2c2c3c\],
-body.theme-light .border-\[\#303040\],
-body.theme-light .border-\[\#303042\],
-body.theme-light .border-zinc-800,
-body.theme-light .border-zinc-800\/80,
-body.theme-light .border-zinc-700,
-body.theme-light .border-zinc-700\/80,
-body.theme-light .border-zinc-900 {
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) [class*="border-\[#"],
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .border-zinc-800,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .border-zinc-700,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .border-zinc-900,
+body.theme-light footer [class*="border-"],
+body.theme-light [role="dialog"] [class*="border-"] {
   border-color: #e2e8f0 !important;
 }
 
-/* Headings in Day Mode */
-body.theme-light h1:not(.keep-white),
-body.theme-light h2:not(.keep-white),
-body.theme-light h3:not(.keep-white),
-body.theme-light h4:not(.keep-white),
-body.theme-light .font-display:not(.keep-white) {
-  color: #0f172a;
-}
-
-/* Text Colors in Day Mode */
-body.theme-light .text-white:not(.keep-white) {
+/* Headings in Day Mode (outside hero & CTA) */
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) h1,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) h2:not(.text-\[\#E52328\]),
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) h3:not(.text-\[\#E52328\]),
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) h4,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .font-display:not(.text-\[\#E52328\]):not(.bg-\[\#E52328\] *),
+body.theme-light footer .font-display,
+body.theme-light [role="dialog"] h3:not(.text-\[\#E52328\]),
+body.theme-light [role="dialog"] h4 {
   color: #0f172a !important;
 }
-body.theme-light .text-zinc-100:not(.keep-white),
-body.theme-light .text-zinc-200:not(.keep-white) {
-  color: #1e293b !important;
-}
-body.theme-light .text-zinc-300:not(.keep-white) {
-  color: #334155 !important;
-}
-body.theme-light .text-zinc-400 {
-  color: #64748b !important;
-}
-body.theme-light .text-zinc-500 {
-  color: #94a3b8 !important;
+
+/* High contrast text to dark slate in Day Mode (outside hero & CTA) */
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .text-white:not(.bg-\[\#E52328\] *):not(.bg-red-600 *),
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .text-zinc-100,
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .text-zinc-200,
+body.theme-light [role="dialog"] .text-white:not(.bg-\[\#E52328\] *) {
+  color: #0f172a !important;
 }
 
-/* Preserve Brand Red and White text on Brand Elements */
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .text-zinc-300,
+body.theme-light footer .text-zinc-300,
+body.theme-light [role="dialog"] .text-zinc-300 {
+  color: #334155 !important;
+}
+
+body.theme-light main > section:not(.cinema-hero-isolated):not(.final-cta-section) .text-zinc-400,
+body.theme-light footer .text-zinc-400,
+body.theme-light [role="dialog"] .text-zinc-400 {
+  color: #64748b !important;
+}
+
+/* Preserve Brand Red & White text on All Primary Buttons & Badges */
 body.theme-light .bg-\[\#E52328\],
 body.theme-light .bg-\[\#c4181d\],
 body.theme-light .bg-\[\#F0523D\],
-body.theme-light .bg-red-600,
-body.theme-light .bg-red-700 {
-  color: #ffffff !important;
-}
 body.theme-light .bg-\[\#E52328\] *,
-body.theme-light .bg-\[\#c4181d\] *,
-body.theme-light .bg-\[\#F0523D\] *,
-body.theme-light .bg-red-600 *,
-body.theme-light .bg-red-700 * {
+body.theme-light .bg-\[\#c4181d\] * {
   color: #ffffff !important;
 }
 body.theme-light .text-\[\#E52328\] {
   color: #E52328 !important;
 }
-body.theme-light .text-\[\#F0523D\] {
-  color: #F0523D !important;
-}
 
 /* Inputs & Form Fields in Day Mode */
-body.theme-light input,
+body.theme-light input:not([type="range"]),
 body.theme-light textarea,
 body.theme-light select {
   background-color: #ffffff !important;
@@ -305,58 +274,60 @@ body.theme-light textarea::placeholder {
   color: #94a3b8 !important;
 }
 
-/* Scrolled Navbar in Day Mode */
-body.theme-light header.is-scrolled {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom-color: #e2e8f0 !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
-}
-body.theme-light header.is-scrolled nav a {
-  color: #475569 !important;
-}
-body.theme-light header.is-scrolled nav a:hover {
-  color: #E52328 !important;
-}
-body.theme-light header.is-scrolled .text-white {
-  color: #0f172a !important;
-}
-
-/* Hero Section cinematic preservation in Day Mode */
-body.theme-light .hero-section {
-  background-color: #08080a !important;
-}
-body.theme-light .hero-section h1,
-body.theme-light .hero-section h1 *,
-body.theme-light .hero-section .text-white,
-body.theme-light .hero-section .text-zinc-300,
-body.theme-light .hero-section .text-zinc-200 {
-  color: #ffffff !important;
-}
-body.theme-light .hero-bottom-fade {
-  background: linear-gradient(to bottom, transparent 0%, rgba(248, 250, 252, 0.85) 75%, #f8fafc 100%) !important;
-}
-
-/* Final CTA Section in Day Mode */
-body.theme-light .final-cta-section {
-  background-color: #08080a !important;
-}
-body.theme-light .final-cta-section h2,
-body.theme-light .final-cta-section h2 *,
-body.theme-light .final-cta-section .text-white,
-body.theme-light .final-cta-section .text-zinc-300 {
-  color: #ffffff !important;
-}
-
-/* Grid pattern in Day Mode */
-body.theme-light .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-}
-
-/* Modals in Day Mode */
+/* Modal Dialog and Backdrop in Day Mode */
 body.theme-light .fixed.inset-0.bg-black\/85,
 body.theme-light .fixed.inset-0.bg-black\/80 {
   background-color: rgba(15, 23, 42, 0.7) !important;
 }
+body.theme-light [role="dialog"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Hero Section: ABSOLUTELY ISOLATED CINEMATIC DARK EXPERIENCE */
+body.theme-light .cinema-hero-isolated {
+  background-color: #08080a !important;
+  color: #ffffff !important;
+}
+body.theme-light .cinema-hero-isolated h1,
+body.theme-light .cinema-hero-isolated h1 span,
+body.theme-light .cinema-hero-isolated p,
+body.theme-light .cinema-hero-isolated strong,
+body.theme-light .cinema-hero-isolated .text-white {
+  color: #ffffff !important;
+}
+body.theme-light .cinema-hero-isolated .text-zinc-200,
+body.theme-light .cinema-hero-isolated .text-zinc-300 {
+  color: #e2e8f0 !important;
+}
+body.theme-light .cinema-hero-isolated .text-zinc-400 {
+  color: #94a3b8 !important;
+}
+body.theme-light .cinema-hero-isolated .bg-black\/60 {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+body.theme-light .cinema-hero-isolated .border-white\/15,
+body.theme-light .cinema-hero-isolated .border-white\/20,
+body.theme-light .cinema-hero-isolated .border-white\/25 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+body.theme-light .cinema-hero-isolated .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+/* Final CTA Section: ABSOLUTELY ISOLATED CINEMATIC DARK PHOTO BANNER */
+body.theme-light .final-cta-section {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+body.theme-light .final-cta-section h2,
+body.theme-light .final-cta-section .font-display,
+body.theme-light .final-cta-section p,
+body.theme-light .final-cta-section .text-white {
+  color: #ffffff !important;
+}
+body.theme-light .final-cta-section .text-zinc-300 {
+  color: #e2e8f0 !important;
+}
+
 

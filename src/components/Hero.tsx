@@ -11,7 +11,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
   const videoId = "MO4sdsh1T4I";
 
   return (
-    <section className="hero-section relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-12 overflow-hidden bg-[#08080a]">
+    <section className="cinema-hero-isolated relative min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-12 overflow-hidden bg-[#08080a] text-white">
       {/* Background Cinematic YouTube Looping Video (Completely Ambient, Zero Controls) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         {/* Poster Fallback Image while iframe initializes */}
@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
         <div className="absolute inset-0 bg-scanline pointer-events-none opacity-30 select-none" />
 
         {/* Athletic Gradient Overlays */}
-        <div className="hero-bottom-fade absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80 pointer-events-none select-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-black/80 pointer-events-none select-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#08080a] via-transparent to-[#08080a]/80 pointer-events-none select-none" />
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none select-none" />
 
@@ -50,11 +50,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto w-full">
         <div className="max-w-4xl space-y-6">
           {/* Eyebrow Badge with Live Pulse */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#181822]/90 border border-[#303040] backdrop-blur-md shadow-lg shadow-black/50">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/60 border border-white/20 backdrop-blur-md shadow-lg shadow-black/50">
             <span className="w-2.5 h-2.5 rounded-full bg-[#E52328] animate-ping" />
-            <span className="text-zinc-200 text-xs sm:text-sm font-condensed font-bold tracking-widest uppercase flex items-center gap-2">
+            <span className="text-white text-xs sm:text-sm font-condensed font-bold tracking-widest uppercase flex items-center gap-2">
               <span>E.F.F.E.C.T. FITNESS</span>
-              <span className="text-zinc-600">•</span>
+              <span className="text-zinc-400">•</span>
               <span className="text-[#E52328]">ATLANTA'S PERFORMING ARTS GYM</span>
             </span>
           </div>
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
           </div>
 
           {/* Supporting Copy */}
-          <p className="text-zinc-300 text-base sm:text-lg md:text-xl font-normal max-w-2xl leading-relaxed">
+          <p className="text-zinc-200 text-base sm:text-lg md:text-xl font-normal max-w-2xl leading-relaxed drop-shadow">
             <strong className="text-white font-semibold">Effective. Focused. Fast. Exceptional. Creative Training.</strong> Where health, hustle, and heart collide on Metropolitan Parkway. Step inside Atlanta’s most electrifying fitness movement with HBCU drumline energy and radical accountability.
           </p>
 
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
 
             <button
               onClick={onExploreClasses}
-              className="px-8 py-4 rounded-xl bg-zinc-900/80 hover:bg-zinc-800 text-white border border-zinc-700/80 hover:border-zinc-400 font-display text-xl sm:text-2xl tracking-wider uppercase transition-all backdrop-blur-sm flex items-center justify-center gap-2 group"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 font-display text-xl sm:text-2xl tracking-wider uppercase transition-all backdrop-blur-md flex items-center justify-center gap-2 group shadow-lg"
             >
               <span>EXPLORE CLASSES</span>
               <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-[#E52328]" />
@@ -100,7 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
           </div>
 
           {/* Social Proof Avatars */}
-          <div className="flex items-center gap-3 pt-2 text-xs text-zinc-400">
+          <div className="flex items-center gap-3 pt-2 text-xs text-zinc-300">
             <div className="flex -space-x-2">
               <img src="https://images.squarespace-cdn.com/content/v1/5665daf8df40f3d958f6d59c/31fbea14-e02d-4a72-97f4-b537413e9a6c/3M8A3300.jpeg" alt="Dooley" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
               <img src="https://images.squarespace-cdn.com/content/v1/5665daf8df40f3d958f6d59c/621fabef-a85b-466b-beac-a5e4b06b0ba7/2I1A0769.jpeg" alt="Coach Reggie" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
               <img src="https://images.squarespace-cdn.com/content/v1/5665daf8df40f3d958f6d59c/128154e1-652c-4de3-b566-7038f6b1f80a/DajaProfileEffect.png" alt="Coach Daja" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
             </div>
             <span>
-              Joined by <strong className="text-white font-semibold">10,000+ members</strong> • Ranked #1 Performing Arts Gym in Atlanta
+              Joined by <strong className="text-white font-semibold">10,000+ members</strong> • <span className="text-zinc-300">Ranked #1 Performing Arts Gym in Atlanta</span>
             </span>
           </div>
         </div>
@@ -116,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenFreePass, onExploreClasses }) 
 
       {/* Hero Bottom Stats Ribbon with Animated Counters */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 bg-[#111116]/90 border border-[#23232e] rounded-2xl backdrop-blur-md shadow-2xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 bg-black/60 border border-white/15 rounded-2xl backdrop-blur-md shadow-2xl">
           <div className="space-y-0.5">
             <div className="text-2xl sm:text-3xl lg:text-4xl font-display text-white">
               <AnimatedCounter target={15} suffix="+ ELITE" duration={1800} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Search, Phone, ChevronRight, Sparkles, MapPin } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
   onOpenFreePass: () => void;
@@ -13,6 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSearch,
   onOpenBooking
 }) => {
+  const { isDark } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -40,9 +42,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'is-scrolled scrolled-navbar bg-[#08080a]/95 backdrop-blur-md border-b border-[#22222a] py-3 shadow-2xl'
-            : 'bg-gradient-to-b from-black/90 via-black/40 to-transparent py-5'
+          isDark
+            ? isScrolled
+              ? 'bg-[#08080a]/95 backdrop-blur-md border-b border-[#22222a] py-3 shadow-2xl'
+              : 'bg-gradient-to-b from-black/90 via-black/40 to-transparent py-5'
+            : isScrolled
+              ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 shadow-md'
+              : 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-4 shadow-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,10 +64,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-white rounded-full" />
               </div>
               <div className="flex flex-col">
-                <span className="font-display text-xl sm:text-2xl tracking-wider text-white uppercase leading-none group-hover:text-[#E52328] transition-colors">
+                <span className={`font-display text-xl sm:text-2xl tracking-wider uppercase leading-none group-hover:text-[#E52328] transition-colors ${
+                  isDark ? 'text-white' : 'text-slate-900'
+                }`}>
                   E.F.F.E.C.T.
                 </span>
-                <span className="text-[9px] sm:text-[10px] tracking-widest text-zinc-400 font-condensed font-bold uppercase">
+                <span className={`text-[9px] sm:text-[10px] tracking-widest font-condensed font-bold uppercase ${
+                  isDark ? 'text-zinc-400' : 'text-slate-500'
+                }`}>
                   FITNESS • ATLANTA
                 </span>
               </div>
@@ -73,7 +83,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-xs uppercase font-condensed tracking-wider text-zinc-300 hover:text-[#E52328] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E52328] hover:after:w-full after:transition-all"
+                  className={`text-xs uppercase font-condensed tracking-wider hover:text-[#E52328] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E52328] hover:after:w-full after:transition-all ${
+                    isDark ? 'text-zinc-300' : 'text-slate-700'
+                  }`}
                 >
                   {link.name}
                 </a>
@@ -87,17 +99,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <button
                 onClick={onOpenSearch}
-                className="p-2.5 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800/60 border border-transparent hover:border-zinc-700/80 transition-all flex items-center gap-1.5 text-xs font-condensed"
+                className={`p-2.5 rounded-lg border transition-all flex items-center gap-1.5 text-xs font-condensed ${
+                  isDark
+                    ? 'text-zinc-400 hover:text-white hover:bg-zinc-800/60 border-transparent hover:border-zinc-700/80'
+                    : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border-slate-200'
+                }`}
                 title="Search (Ctrl+K)"
                 aria-label="Search site"
               >
                 <Search className="w-4 h-4" />
-                <span className="hidden lg:inline text-zinc-500 text-[11px]">Ctrl+K</span>
+                <span className={`hidden lg:inline text-[11px] ${isDark ? 'text-zinc-500' : 'text-slate-500'}`}>Ctrl+K</span>
               </button>
 
               <button
                 onClick={onOpenBooking}
-                className="px-3.5 py-2 rounded-lg border border-zinc-700 hover:border-zinc-500 text-zinc-200 hover:text-white text-xs font-condensed uppercase tracking-wider font-bold transition-all"
+                className={`px-3.5 py-2 rounded-lg border text-xs font-condensed uppercase tracking-wider font-bold transition-all ${
+                  isDark
+                    ? 'border-zinc-700 hover:border-zinc-500 text-zinc-200 hover:text-white'
+                    : 'border-slate-300 hover:border-slate-400 text-slate-800 hover:bg-slate-100'
+                }`}
               >
                 Book Class
               </button>
@@ -123,7 +143,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-zinc-300 hover:text-white rounded-lg bg-zinc-900 border border-zinc-800"
+                className={`p-2 rounded-lg border ${
+                  isDark
+                    ? 'text-zinc-300 hover:text-white bg-zinc-900 border-zinc-800'
+                    : 'text-slate-800 hover:text-black bg-slate-100 border-slate-300'
+                }`}
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -135,18 +159,26 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Slide-Out Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-6 overflow-y-auto animate-in fade-in duration-200 xl:hidden">
+        <div className={`fixed inset-0 z-50 backdrop-blur-xl flex flex-col justify-between p-6 overflow-y-auto animate-in fade-in duration-200 xl:hidden ${
+          isDark ? 'bg-black/95 text-white' : 'bg-white/98 text-slate-900'
+        }`}>
           <div>
-            <div className="flex items-center justify-between pb-6 border-b border-zinc-800">
+            <div className={`flex items-center justify-between pb-6 border-b ${
+              isDark ? 'border-zinc-800' : 'border-slate-200'
+            }`}>
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded bg-[#E52328] flex items-center justify-center font-display text-white text-lg">
                   E
                 </div>
-                <div className="font-display text-xl text-white">E.F.F.E.C.T. FITNESS</div>
+                <div className={`font-display text-xl ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  E.F.F.E.C.T. FITNESS
+                </div>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-zinc-400 hover:text-white rounded-lg bg-zinc-800/80"
+                className={`p-2 rounded-lg ${
+                  isDark ? 'text-zinc-400 hover:text-white bg-zinc-800/80' : 'text-slate-600 hover:text-black bg-slate-100'
+                }`}
               >
                 <X className="w-6 h-6" />
               </button>
@@ -158,16 +190,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between text-lg font-condensed tracking-wider uppercase text-zinc-200 hover:text-[#E52328] py-2 border-b border-zinc-900"
+                  className={`flex items-center justify-between text-lg font-condensed tracking-wider uppercase py-2 border-b ${
+                    isDark
+                      ? 'text-zinc-200 hover:text-[#E52328] border-zinc-900'
+                      : 'text-slate-800 hover:text-[#E52328] border-slate-200'
+                  }`}
                 >
                   <span>{link.name}</span>
-                  <ChevronRight className="w-4 h-4 text-zinc-600" />
+                  <ChevronRight className={`w-4 h-4 ${isDark ? 'text-zinc-600' : 'text-slate-400'}`} />
                 </a>
               ))}
             </nav>
           </div>
 
-          <div className="space-y-3 pt-6 border-t border-zinc-800">
+          <div className={`space-y-3 pt-6 border-t ${isDark ? 'border-zinc-800' : 'border-slate-200'}`}>
             {/* Day / Night Switcher for Mobile Drawer */}
             <ThemeToggle variant="mobile" />
 
@@ -187,19 +223,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenBooking();
               }}
-              className="w-full py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-condensed uppercase tracking-wider text-sm font-bold rounded-lg"
+              className={`w-full py-3 font-condensed uppercase tracking-wider text-sm font-bold rounded-lg transition-colors ${
+                isDark ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'
+              }`}
             >
               BOOK A CLASS
             </button>
 
-            <div className="pt-2 flex items-center justify-between text-xs text-zinc-400">
-              <a href="tel:4042540684" className="flex items-center gap-1.5 text-zinc-300 hover:text-[#E52328]">
+            <div className={`pt-2 flex items-center justify-between text-xs ${
+              isDark ? 'text-zinc-400' : 'text-slate-500'
+            }`}>
+              <a href="tel:4042540684" className={`flex items-center gap-1.5 hover:text-[#E52328] ${
+                isDark ? 'text-zinc-300' : 'text-slate-700'
+              }`}>
                 <Phone className="w-3.5 h-3.5 text-[#E52328]" />
                 <span>(404) 254-0684</span>
               </a>
-              <span className="flex items-center gap-1 text-zinc-400">
-                <MapPin className="w-3.5 h-3.5 text-zinc-500" />
-                <span>1995B Metropolitan Pkwy</span>
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-[#E52328]" />
+                <span>Atlanta, GA</span>
               </span>
             </div>
           </div>
